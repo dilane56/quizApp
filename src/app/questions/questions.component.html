@@ -1,34 +1,27 @@
 <div class="quizContainer">
-  <div class='borderTop'>
-    <div class='borderTop__content'></div>
-  </div>
-  <div class='borderBottom'>
-    <div class='borderBottom__content'></div>
-  </div>
-  <div>
-    <!--    <Questions questions={questions} chooseAnswer={chooseAnswer} display={result.display} />-->
-    <div class="questionContainer" *ngFor="let question of this.questions">
-      <p>{{ question.title }}</p>
-      <div class='answersBloc'>
-        <button *ngFor="let answer of question.answers"
-                [ngStyle]="getStyle(answer)"
-                [class.active]="answer.ishold"
-                (click)="chooseAnswer(question.id, answer.id)">
-          {{ answer.value }}
-        </button>
-      </div>
-      <hr/>
+  <!--    <Questions questions={questions} chooseAnswer={chooseAnswer} display={result.display} />-->
+  <div class="questionContainer" *ngFor="let question of this.questions">
+    <p>{{ question.title }}</p>
+    <div class='answersBloc'>
+      <button *ngFor="let answer of question.answers"
+              [ngStyle]="getStyle(answer)"
+              [class.active]="answer.isHold"
+              (click)="chooseAnswer(question.id, answer.id)">
+        {{ answer.value }}
+      </button>
     </div>
+    <hr/>
   </div>
 
+  <div class="button" *ngIf="!result.display">
+    <button (click)="checkResult()">Check Answers</button>
+  </div>
+  <div class="score" *ngIf="result.display">
+    <h3>You Score : {{ result.value }} / {{ questions.length }} answers</h3>
+    <a class="play_again" routerLink="/">Play Again</a>
+  </div>
+
+
 </div>
-<!--  {{!result.display ?-->
-<!--<div class='button'>-->
-<!--  <a to="/" class='back_To_Home'>Back to Home</a>-->
-<!--  <button onClick={checkresult}>Check Answers</button>-->
-<!--</div> :-->
-<!--<div class='score'>-->
-<!--  <h3> You Score : {result.value}/{questions.length} answers</h3>-->
-<!--  <a class='play_again' to="/">play again</a>-->
-<!--  }}}!-->
-<!--</div>-->
+
+
